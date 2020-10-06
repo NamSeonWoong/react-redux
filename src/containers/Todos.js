@@ -1,16 +1,18 @@
 import React from 'react';
 
-const TodoItem = ({todo, onToggle, onRemove}) => {
+const TodoItem = ({todo,onToggle,onRemove}) => {
     return (
         <div>
             <input 
                 type="checkbox"
-                onClick={() =>onToggle(todo.id)}
+                onClick={()=>onToggle(todo.id)}
                 checked={todo.done}
                 readOnly={true}
             />
-            <span style={{textDecoration: todo.done ? 'line-through' : 'none'}}>{todo.text}</span>
-            <button onClick={()=> onRemove(todo.id)}>삭제</button>
+            <span style={{textDecoration: todo.done ? 'line-through':'none'}}>
+                {todo.text}
+            </span>
+            <button onClick={() => onRemove(todo.id)}>삭제</button>
         </div>
     );
 };
@@ -39,9 +41,10 @@ const Todos = ({
                 {todos.map(todo=>(
                     <TodoItem
                         todo={todo}
-                        key={todo.is}
+                        key={todo.id}
                         onToggle={onToggle}
-                        onRemove={onRemove}/>
+                        onRemove={onRemove}
+                    />
                 ))}
             </div>
         </div>      
